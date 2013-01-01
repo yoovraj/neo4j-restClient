@@ -3,7 +3,7 @@ package com.test.client;
 
 
 import com.client.action.CypherQuery;
-import com.client.action.ReadClient;
+import com.client.action.QueryClient;
 import com.client.response.Node;
 import com.client.response.NodeResponse;
 import com.client.response.Relationship;
@@ -13,7 +13,7 @@ import com.config.NeoConfig;
 
 public class ReadClientTest {
 	public static void main(String[] args) {
-		ReadClient client = new ReadClient(new NeoConfig("192.168.2.4", 7474));
+		QueryClient client = new QueryClient(new NeoConfig("192.168.2.4", 7474));
 		ServiceRoot serviceRoot = client.getServiceRoot();
 		System.out.println(serviceRoot.getNeo4j_version());
 		

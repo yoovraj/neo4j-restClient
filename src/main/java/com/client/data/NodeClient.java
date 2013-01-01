@@ -18,6 +18,13 @@ import com.config.NeoConfig;
 import com.constants.NeoConst;
 import com.google.gson.Gson;
 
+/**
+ * Client for interacting with Nodes 
+ * supports create, read, delete operations.
+ * update operation still TODO
+ * @author yoovraj
+ *
+ */
 public class NodeClient {
 	static HttpClient httpclient = null;
 	NeoConfig neoConfig = null;
@@ -29,10 +36,19 @@ public class NodeClient {
 		httpclient = new HttpClient();
 		httpclient.setHostConfiguration(hostConfig);
 	}
+	/**
+	 * Create node without Properties 
+	 * @return the created Node
+	 */
 	public Node createNode() {
 		return this.createNode(null);
 	}
 
+	/**
+	 * Create a node with the given <key, value> properties
+	 * @param nodeProperties
+	 * @return the created Node
+	 */
 	public Node createNode(Map<String, String> nodeProperties) {
 		PostMethod post = new PostMethod();
 		post.setPath("/db/data/node");
@@ -67,6 +83,11 @@ public class NodeClient {
 		
 	}
 
+	/**
+	 * Get the node information based on nodeNumber
+	 * @param nodeNo
+	 * @return the requested Node
+	 */
 	public Node getNode(int nodeNo) {
 		GetMethod get = new GetMethod();
 		get.setPath("/db/data/node/" + nodeNo);
@@ -95,6 +116,11 @@ public class NodeClient {
 
 	}
 	
+	/**
+	 * Delete the node with given nodeNo.
+	 * @param nodeNo
+	 * @return result SUCCESS:true<br>FAIL:false
+	 */
 	public boolean deleteNode(int nodeNo) {
 		DeleteMethod delete = new DeleteMethod();
 		delete.setPath("/db/data/node/" + nodeNo);

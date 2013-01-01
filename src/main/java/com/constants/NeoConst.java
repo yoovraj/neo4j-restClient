@@ -1,5 +1,10 @@
 package com.constants;
 
+/**
+ * Neo4j Constants 
+ * @author yoovraj
+ *
+ */
 public interface NeoConst {
 
 	public static int NO_CONTENT = 204;

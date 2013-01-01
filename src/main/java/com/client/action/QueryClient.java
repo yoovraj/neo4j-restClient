@@ -17,11 +17,16 @@ import com.client.response.ServiceRoot;
 import com.config.NeoConfig;
 import com.google.gson.Gson;
 
-public class ReadClient {
+/**
+ * This is a query client to send cypher queries through REST
+ * @author yoovraj
+ *
+ */
+public class QueryClient {
 	static HttpClient httpclient = null;
 	NeoConfig neoConfig = null;
 	
-	public ReadClient(NeoConfig neoConfig) {
+	public QueryClient(NeoConfig neoConfig) {
 		this.neoConfig = neoConfig;
 		HostConfiguration hostConfig = new HostConfiguration();
 		hostConfig.setHost(neoConfig.getNeoHost(), neoConfig.getNeoPort());
@@ -29,6 +34,11 @@ public class ReadClient {
 		httpclient.setHostConfiguration(hostConfig);
 	}
 	
+	/**
+	 * Query the service Root information of the neo4j storage.
+	 * this function is sometimes used to get the starting point.
+	 * @return ServiceRoot Information
+	 */
 	public ServiceRoot getServiceRoot() {
 		GetMethod get = new GetMethod();
 		get.setPath("/db/data");
@@ -45,6 +55,10 @@ public class ReadClient {
 		return null;
 	}
 	
+	/**
+	 * @param cypherQuery for Nodes 
+	 * @return the nodes list in form of NodeResponse.
+	 */
 	public NodeResponse getNodeQueryResponse(CypherQuery query) {
 		PostMethod post = new PostMethod();
 		post.setPath("/db/data/cypher");
@@ -75,6 +89,10 @@ public class ReadClient {
 		return null;
 	}
 
+	/**
+	 * @param CypherQuery for relationships
+	 * @return relationships list in form of RelationshipResponse
+	 */
 	public RelationshipResponse getRelationshipQueryResponse(CypherQuery query) {
 		PostMethod post = new PostMethod();
 		post.setPath("/db/data/cypher");

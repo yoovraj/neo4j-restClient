@@ -19,6 +19,13 @@ import com.config.NeoConfig;
 import com.constants.NeoConst;
 import com.google.gson.Gson;
 
+/**
+ * Client to interact with the Relationship data
+ * supports create, read, delete operations.
+ * update operation still TODO
+ * @author yoovraj
+ *
+ */
 public class RelationshipClient {
 	static HttpClient httpclient = null;
 	NeoConfig neoConfig = null;
@@ -31,10 +38,22 @@ public class RelationshipClient {
 		httpclient.setHostConfiguration(hostConfig);
 	}
 	
+	/**
+	 * Create a Relationship without Relationship properties.
+	 * @param startNode
+	 * @param endNode
+	 * @param type
+	 * @return the created Relationship
+	 */
 	public Relationship createRelationship(int startNode, int endNode, String type) {
 		return this.createRelationship(new RelationshipNodeParam(startNode, endNode	, type));
 	}
 	
+	/**
+	 * Create a relationship with relationship properties specified.
+	 * @param relationshipReqParam
+	 * @return the created Relationship
+	 */
 	public Relationship createRelationship(RelationshipNodeParam relationshipReqParam) {
 		PostMethod post = new PostMethod();
 		post.setPath("/db/data/node/" + relationshipReqParam.getFrom() + "/relationships");
@@ -67,6 +86,11 @@ public class RelationshipClient {
 		
 	}
 	
+	/**
+	 * Get the relationship information based on relationship number.
+	 * @param relationshipNo
+	 * @return the requested Relationship
+	 */
 	public Relationship getRelationshipById(int relationshipNo) {
 		GetMethod get = new GetMethod();
 		get.setPath("/db/data/relationship/" + relationshipNo);
@@ -95,6 +119,11 @@ public class RelationshipClient {
 		
 	}
 	
+	/**
+	 * Get the properties map <key,value> for the given relationship 
+	 * @param relationshipNo
+	 * @return HashMap <key, value> for properties on relationship
+	 */
 	public Map<String, String> getPropertiesOnRelationship(int relationshipNo) {
 		GetMethod get = new GetMethod();
 		get.setPath("/db/data/relationship/" + relationshipNo + "/properties");
@@ -125,6 +154,12 @@ public class RelationshipClient {
 		return null;
 	}
 	
+	/**
+	 * Set the multiple properties for a particular relationship (Bulk Set)
+	 * @param relationshipNo
+	 * @param relationshipProperties
+	 * @return result SUCCESS:true<br>FAIL:false
+	 */
 	public boolean setPropertiesOnRelationship(int relationshipNo, Map<String, String> relationshipProperties) {
 		PutMethod put = new PutMethod();
 		put.setPath("/db/data/relationship/" + relationshipNo + "/properties");
@@ -151,6 +186,13 @@ public class RelationshipClient {
 
 	}
 	
+	/**
+	 * Set single properties for a particular relationship
+	 * @param relationshipNo
+	 * @param propertyName
+	 * @param propertyValue
+	 * @return result SUCCESS:true<br>FAIL:false
+	 */
 	public boolean setSinglePropertyOnRelationship(int relationshipNo, String propertyName, String propertyValue) {
 		PutMethod put = new PutMethod();
 		put.setPath("/db/data/relationship/" + relationshipNo + "/properties/" + propertyName);
@@ -177,6 +219,13 @@ public class RelationshipClient {
 
 	}
 	
+	/**
+	 * Get the relationships related to a particular node based on different options
+	 * @param nodeNo	Particular node number
+	 * @param typeOf	Type of the relationship
+	 * @param direction	Direction of the relationship (ALL, IN, OUT)
+	 * @return the Relationships array 
+	 */
 	public Relationship[] getRelationships(int nodeNo, String typeOf, String direction) {
 		GetMethod get = new GetMethod();
 		if (typeOf != null) {
@@ -207,6 +256,13 @@ public class RelationshipClient {
 		}
 		return null;
 	}
+	/**
+	 * Get the different types of relationships associated with a particular node.
+	 * @param nodeNo	Particular node number
+	 * @param typeOf	Type of the relationships in form of String Array
+	 * @param direction	Direction of the relationship (ALL, IN, OUT)
+	 * @return the Relationships array 
+	 */
 	public Relationship[] getRelationships(int nodeNo, String[] typeOf, String direction) {
 		StringBuilder sb = new StringBuilder();
 		

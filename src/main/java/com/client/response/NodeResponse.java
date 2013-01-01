@@ -1,5 +1,10 @@
 package com.client.response;
 
+/**
+ * Depicts the JSON Response of Node for the REST API
+ * @author yoovraj
+ *
+ */
 public class NodeResponse {
 	String[] columns;
 	Node[][] data;

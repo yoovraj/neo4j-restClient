@@ -3,6 +3,11 @@ package com.client.response;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Relationship Data Information
+ * @author yoovraj
+ *
+ */
 public class Relationship {
 	String start;
 	Map<String, String> data = new HashMap<String, String>();

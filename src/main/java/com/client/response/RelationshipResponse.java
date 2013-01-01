@@ -1,5 +1,10 @@
 package com.client.response;
 
+/**
+ * Depicts the JSON Response of Relationship for the REST API
+ * @author yoovraj
+ *
+ */
 public class RelationshipResponse {
 	String[] columns;
 	Relationship[][] data;

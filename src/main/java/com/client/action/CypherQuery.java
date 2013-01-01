@@ -5,8 +5,20 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
+/**
+ * This class if for the cypher query
+ * @author yoovraj
+ *
+ */
 public class CypherQuery {
+	/**
+	 * Specify the Cypher query without the ; 
+	 */
 	String query;
+	
+	/**
+	 * specify the query parameters in a hashmap <key, value> 
+	 */
 	Map<String, String> params = new HashMap<String, String>();
 	public CypherQuery(String query, Map<String, String> params) {
 		super();

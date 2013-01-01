@@ -1,5 +1,10 @@
 package com.config;
 
+/**
+ * Neo4j server database configuration
+ * @author yoovraj
+ *
+ */
 public class NeoConfig {
 	String neoHost = null;
 	int    neoPort = 0;

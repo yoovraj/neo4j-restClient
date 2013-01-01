@@ -5,11 +5,31 @@ import java.util.Map;
 
 import com.config.NeoConfig;
 
+/**
+ * This class provides the required parameters for sending queries on Relationship.
+ * @author yoovraj
+ *
+ */
 public class RelationshipNodeParam {
 
+	/**
+	 * the start node of the relationship
+	 */
 	String from;
+	
+	/**
+	 * the end node of the relationship
+	 */
 	String to;
+	
+	/**
+	 * the type of the relationship
+	 */
 	String type;
+	
+	/**
+	 * the parameters for the relationship
+	 */
 	Map<String, String> data = new HashMap<String, String>();
 		
 	public RelationshipNodeParam(int from, int to, String type, Map<String, String> data) {

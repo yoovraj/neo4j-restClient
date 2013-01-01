@@ -1,5 +1,10 @@
 package com.client.response;
 
+/**
+ * Service root for the neo db 
+ * @author yoovraj
+ *
+ */
 public class ServiceRoot {
 	Extensions extensions;
 	String node;

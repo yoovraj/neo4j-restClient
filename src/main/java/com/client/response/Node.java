@@ -2,6 +2,11 @@ package com.client.response;
 
 import java.util.Map;
 
+/**
+ * Node data information
+ * @author yoovraj
+ *
+ */
 public class Node {
 	String outgoing_relationships;
 	Map<String, String > data ;
